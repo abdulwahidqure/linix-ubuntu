@@ -1,0 +1,48 @@
+sudo apt update
+sudo apt install mysql-server
+
+sudo mysql_secure_installation
+
+sudo mysql
+
+CREATE USER 'username'@'host' IDENTIFIED WITH authentication_plugin BY 'password'; [formate]
+
+After CREATE USER, you specify a username. This is immediately followed by an @ sign and then the hostname from which this user will connect. 
+If you only plan to access this user locally from your Ubuntu server, you can specify localhost. 
+Wrapping both the username and host in single quotes isn’t always necessary, but doing so can help to prevent errors.
+
+As an alternative, you can leave out the WITH authentication plugin portion of the syntax entirely to have the user authenticate with MySQL’s default plugin, caching_sha2_password. 
+The MySQL documentation recommends this plugin for users who want to log in with a password due to its strong security features.
+
+Run the following command to create a user that authenticates with caching_sha2_password. 
+Be sure to change sammy to your preferred username and password to a strong password of your choosing:
+
+CREATE USER 'sammy'@'localhost' IDENTIFIED BY 'password';
+
+Note: There is a known issue with some versions of PHP that causes problems with caching_sha2_password. 
+If you plan to use this database with a PHP application — phpMyAdmin, for example — you may want to create a user that will authenticate with the older, 
+though still secure, mysql_native_password plugin instead:
+
+CREATE USER 'sammy'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+If you aren’t sure, you can always create a user that authenticates with caching_sha2_plugin and then ALTER it later on with this command:
+
+ALTER USER 'sammy'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+GRANT PRIVILEGE ON database.table TO 'username'@'host'; [format]
+
+GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'sammy'@'localhost' WITH GRANT OPTION;
+
+Note that this statement also includes WITH GRANT OPTION. This will allow your MySQL user to grant any that it has to other users on the system.
+
+FLUSH PRIVILEGES;
+
+exit
+
+To check mysql service status
+
+sudo systemctl status mysql.service
+
+To start mysql service 
+
+sudo systemctl start mysql
