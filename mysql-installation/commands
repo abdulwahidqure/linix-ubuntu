@@ -46,3 +46,5 @@ sudo systemctl status mysql.service
 To start mysql service 
 
 sudo systemctl start mysql
+
+GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'localhost';
