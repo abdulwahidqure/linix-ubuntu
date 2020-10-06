@@ -1,0 +1,2 @@
+to copy a file 
+cp -i path/to/file/tocopy path/to/file/topast [i means interactive]
