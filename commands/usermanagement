@@ -1,1 +1,20 @@
 ADDING NEW USER
+sudo useradd -s /bin/bash -d /home/vivek/ -m -G sudo vivek
+or
+sudo useradd
+
+Where,
+
+-s /bin/bash – Set /bin/bash as login shell of the new account
+-d /home/vivek/ – Set /home/vivek/ as home directory of the new Ubuntu account
+-m – Create the user’s home directory
+-G sudo – Make sure vivek user can sudo i.e. give admin access to the new account
+
+add existing user into a group
+
+useradd vivek sudo
+
+change password
+
+sudo passwd username
+
