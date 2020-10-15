@@ -1,0 +1,14 @@
+To format it in a nice, readable way; use :
+
+sudo lsof -i -n -P | more
+
+To view view only TCP connections :
+
+sudo lsof -i -n -P | grep TCP | more
+
+To view view only UDP connections :
+
+sudo lsof -i -n -P | grep UDP | more
+
+sudo lsof -i :8080 -n -P | more
+
