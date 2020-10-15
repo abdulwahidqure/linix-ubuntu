@@ -1,0 +1,3 @@
+to start socket server in the background
+
+sudo php artisan socket:serve > /dev/null &
